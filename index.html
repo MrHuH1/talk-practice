@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Talk Practice – Speaking Trainer</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      color: #111111;
+    }
+    header {
+      background-color: #00247d; /* dark blue */
+      color: #ffffff;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+    nav a {
+      color: #ffffff;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    nav a:hover {
+      color: #cf142b; /* red */
+    }
+    nav a.active {
+      text-decoration: underline;
+      color: #cf142b;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 20px auto 40px auto;
+      padding: 0 15px;
+    }
+    .card {
+      border: 2px solid #00247d;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+    h2, h3, h4 {
+      margin-top: 0;
+    }
+    .btn {
+      background-color: #cf142b;
+      color: #ffffff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 4px 4px 4px 0;
+    }
+    .btn.secondary {
+      background-color: #00247d;
+    }
+    .btn:disabled {
+      background-color: #999999;
+      cursor: not-allowed;
+    }
+    .tag {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background-color: #00247d;
+      color: #ffffff;
+      font-size: 12px;
+      margin-right: 4px;
+      margin-bottom: 4px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 6px 10px;
+      margin: 4px;
+      border-radius: 12px;
+      border: 1px solid #00247d;
+      font-size: 12px;
+    }
+    .badge.earned {
+      background-color: #cf142b;
+      color: #ffffff;
+      border-color: #cf142b;
+    }
+    .hidden {
+      display: none;
+    }
+    ol, ul {
+      padding-left: 20px;
+    }
+    label {
+      display: block;
+      margin: 2px 0;
+    }
+    .level-box {
+      padding: 8px 10px;
+      border-radius: 6px;
+      border: 1px solid #00247d;
+      margin-top: 10px;
+      max-width: 360px;
+    }
+    .level-a1 { background-color: #e3f2fd; }
+    .level-a2 { background-color: #e8f5e9; }
+    .level-b1 { background-color: #fff3e0; }
+    .levels-table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 700px;
+      margin-top: 10px;
+    }
+    .levels-table th, .levels-table td {
+      border: 1px solid #00247d;
+      padding: 6px 8px;
+      font-size: 14px;
+    }
+    .levels-table th {
+      background-color: #00247d;
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>Talk Practice</h1>
+  <nav>
+    <a data-section="home" class="active">Home</a>
+    <a data-section="idioms">Idioms</a>
+    <a data-section="chunks">Chunky Words</a>
+    <a data-section="dialogues">Sample Dialogues</a>
+    <a data-section="daily">Daily Speaking</a>
+    <a data-section="progress">Progress & Tests</a>
+  </nav>
+</header>
+<div class="container">
+  <!-- HOME -->
+  <section id="home" class="section">
+    <div class="card">
+      <h2>Welcome to Talk Practice</h2>
+      <p>Talk Practice is a speaking-first platform. You listen, repeat and speak about your life using real idioms and chunky phrases.</p>
+      <ul>
+        <li>Idioms → listen, repeat and speak for 30 seconds.</li>
+        <li>Chunky Words → build natural sentences and mini-dialogues.</li>
+        <li>Sample Dialogues → practise real conversations (10 topics).</li>
+        <li>Daily Speaking Prompt → speak every day for 1–2 minutes.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Today’s Speaking Goal</h2>
+      <p><span class="tag">Goal</span> Speak for at least <strong>5 minutes</strong> today.</p>
+      <ol>
+        <li>Choose 3 idioms and record 30-second stories.</li>
+        <li>Do 1 Sample Dialogue (any topic).</li>
+        <li>Answer the Daily Speaking Prompt.</li>
+      </ol>
+    </div>
+  </section>
+  <!-- IDIOMS (20) -->
+  <section id="idioms" class="section hidden">
+    <div class="card">
+      <h2>Idioms – Listen, Repeat and Speak</h2>
+      <p><span class="tag">Goal</span> Use at least <strong>2 idioms</strong> in every story.</p>
+      <p>Step 1: listen and repeat (out loud). Step 2: speak about yourself using the idiom.</p>
+    </div>
+    <div class="card">
+      <h3>Idioms 1–10</h3>
+      <h4>1. break the ice</h4>
+      <p><strong>Meaning:</strong> to make people feel more relaxed and start a conversation.</p>
+      <p><strong>Example:</strong> He told a joke to break the ice at the meeting.</p>
+      <button class="btn" id="rec-idiom-1">🎤 Record: break the ice</button>
+      <button class="btn secondary" id="play-idiom-1" disabled>▶ Listen</button>
+      <p id="stats-idiom-1"></p>
+      <p><em>Speak:</em> Tell about a situation when you had to break the ice with someone new.</p>
+      <h4>2. once in a blue moon</h4>
+      <p><strong>Meaning:</strong> very rarely.</p>
+      <p><strong>Example:</strong> I eat fast food once in a blue moon.</p>
+      <button class="btn" id="rec-idiom-2">🎤 Record: once in a blue moon</button>
+      <button class="btn secondary" id="play-idiom-2" disabled>▶ Listen</button>
+      <p id="stats-idiom-2"></p>
+      <p><em>Speak:</em> What do you do once in a blue moon?</p>
+      <h4>3. piece of cake</h4>
+      <p><strong>Meaning:</strong> very easy.</p>
+      <p><strong>Example:</strong> The test was a piece of cake.</p>
+      <button class="btn" id="rec-idiom-3">🎤 Record: piece of cake</button>
+      <button class="btn secondary" id="play-idiom-3" disabled>▶ Listen</button>
+      <p id="stats-idiom-3"></p>
+      <p><em>Speak:</em> Talk about something that was a piece of cake for you.</p>
+      <h4>4. hit the books</h4>
+      <p><strong>Meaning:</strong> to study hard.</p>
+      <p><strong>Example:</strong> I need to hit the books tonight.</p>
+      <button class="btn" id="rec-idiom-4">🎤 Record: hit the books</button>
+      <button class="btn secondary" id="play-idiom-4" disabled>▶ Listen</button>
+      <p id="stats-idiom-4"></p>
+      <p><em>Speak:</em> When do you usually hit the books?</p>
+      <h4>5. under the weather</h4>
+      <p><strong>Meaning:</strong> feeling ill.</p>
+      <p><strong>Example:</strong> She is under the weather today.</p>
+      <button class="btn" id="rec-idiom-5">🎤 Record: under the weather</button>
+      <button class="btn secondary" id="play-idiom-5" disabled>▶ Listen</button>
+      <p id="stats-idiom-5"></p>
+      <p><em>Speak:</em> Describe the last time you felt under the weather.</p>
+      <h4>6. spill the beans</h4>
+      <p><strong>Meaning:</strong> to reveal a secret.</p>
+      <p><strong>Example:</strong> Who spilled the beans about the surprise party?</p>
+      <button class="btn" id="rec-idiom-6">🎤 Record: spill the beans</button>
+      <button class="btn secondary" id="play-idiom-6" disabled>▶ Listen</button>
+      <p id="stats-idiom-6"></p>
+      <p><em>Speak:</em> Have you ever spilled the beans by accident?</p>
+      <h4>7. cost an arm and a leg</h4>
+      <p><strong>Meaning:</strong> be very expensive.</p>
+      <p><strong>Example:</strong> That phone costs an arm and a leg.</p>
+      <button class="btn" id="rec-idiom-7">🎤 Record: cost an arm and a leg</button>
+      <button class="btn secondary" id="play-idiom-7" disabled>▶ Listen</button>
+      <p id="stats-idiom-7"></p>
+      <p><em>Speak:</em> Talk about something that costs an arm and a leg.</p>
+      <h4>8. break a leg</h4>
+      <p><strong>Meaning:</strong> good luck (especially before a performance).</p>
+      <p><strong>Example:</strong> You have an exam? Break a leg!</p>
+      <button class="btn" id="rec-idiom-8">🎤 Record: break a leg</button>
+      <button class="btn secondary" id="play-idiom-8" disabled>▶ Listen</button>
+      <p id="stats-idiom-8"></p>
+      <p><em>Speak:</em> When do people say “break a leg”?</p>
+      <h4>9. hit the sack</h4>
+      <p><strong>Meaning:</strong> go to bed.</p>
+      <p><strong>Example:</strong> I’m tired. I’m going to hit the sack.</p>
+      <button class="btn" id="rec-idiom-9">🎤 Record: hit the sack</button>
+      <button class="btn secondary" id="play-idiom-9" disabled>▶ Listen</button>
+      <p id="stats-idiom-9"></p>
+      <p><em>Speak:</em> What time do you usually hit the sack?</p>
+      <h4>10. in hot water</h4>
+      <p><strong>Meaning:</strong> in trouble.</p>
+      <p><strong>Example:</strong> He was in hot water after coming home late.</p>
+      <button class="btn" id="rec-idiom-10">🎤 Record: in hot water</button>
+      <button class="btn secondary" id="play-idiom-10" disabled>▶ Listen</button>
+      <p id="stats-idiom-10"></p>
+      <p><em>Speak:</em> Tell about a time you were in hot water.</p>
+    </div>
+    <div class="card">
+      <h3>Idioms 11–20</h3>
+      <h4>11. on cloud nine</h4>
+      <p><strong>Meaning:</strong> extremely happy.</p>
+      <p><strong>Example:</strong> She was on cloud nine when she got the job.</p>
+      <button class="btn" id="rec-idiom-11">🎤 Record: on cloud nine</button>
+      <button class="btn secondary" id="play-idiom-11" disabled>▶ Listen</button>
+      <p id="stats-idiom-11"></p>
+      <p><em>Speak:</em> When were you on cloud nine?</p>
+      <h4>12. a couch potato</h4>
+      <p><strong>Meaning:</strong> a very lazy person who watches a lot of TV.</p>
+      <p><strong>Example:</strong> Stop being a couch potato and go outside!</p>
+      <button class="btn" id="rec-idiom-12">🎤 Record: a couch potato</button>
+      <button class="btn secondary" id="play-idiom-12" disabled>▶ Listen</button>
+      <p id="stats-idiom-12"></p>
+      <p><em>Speak:</em> Do you know any couch potatoes?</p>
+      <h4>13. the ball is in your court</h4>
+      <p><strong>Meaning:</strong> now it is your turn to decide or act.</p>
+      <p><strong>Example:</strong> I’ve done my part. Now the ball is in your court.</p>
+      <button class="btn" id="rec-idiom-13">🎤 Record: the ball is in your court</button>
+      <button class="btn secondary" id="play-idiom-13" disabled>▶ Listen</button>
+      <p id="stats-idiom-13"></p>
+      <p><em>Speak:</em> Give an example when the ball is in someone’s court.</p>
+      <h4>14. hit the nail on the head</h4>
+      <p><strong>Meaning:</strong> say exactly the right thing.</p>
+      <p><strong>Example:</strong> You hit the nail on the head with your comment.</p>
+      <button class="btn" id="rec-idiom-14">🎤 Record: hit the nail on the head</button>
+      <button class="btn secondary" id="play-idiom-14" disabled>▶ Listen</button>
+      <p id="stats-idiom-14"></p>
+      <p><em>Speak:</em> Describe a time when someone hit the nail on the head.</p>
+      <h4>15. under pressure</h4>
+      <p><strong>Meaning:</strong> in a stressful situation.</p>
+      <p><strong>Example:</strong> Students are under pressure before exams.</p>
+      <button class="btn" id="rec-idiom-15">🎤 Record: under pressure</button>
+      <button class="btn secondary" id="play-idiom-15" disabled>▶ Listen</button>
+      <p id="stats-idiom-15"></p>
+      <p><em>Speak:</em> When do you feel under pressure?</p>
+      <h4>16. beat around the bush</h4>
+      <p><strong>Meaning:</strong> avoid saying something directly.</p>
+      <p><strong>Example:</strong> Don’t beat around the bush. Tell me the truth.</p>
+      <button class="btn" id="rec-idiom-16">🎤 Record: beat around the bush</button>
+      <button class="btn secondary" id="play-idiom-16" disabled>▶ Listen</button>
+      <p id="stats-idiom-16"></p>
+      <p><em>Speak:</em> Do you beat around the bush or speak directly?</p>
+      <h4>17. learn something by heart</h4>
+      <p><strong>Meaning:</strong> memorize something.</p>
+      <p><strong>Example:</strong> I learned this poem by heart.</p>
+      <button class="btn" id="rec-idiom-17">🎤 Record: learn by heart</button>
+      <button class="btn secondary" id="play-idiom-17" disabled>▶ Listen</button>
+      <p id="stats-idiom-17"></p>
+      <p><em>Speak:</em> What did you learn by heart at school?</p>
+      <h4>18. in the same boat</h4>
+      <p><strong>Meaning:</strong> in the same difficult situation.</p>
+      <p><strong>Example:</strong> We’re all in the same boat with this project.</p>
+      <button class="btn" id="rec-idiom-18">🎤 Record: in the same boat</button>
+      <button class="btn secondary" id="play-idiom-18" disabled>▶ Listen</button>
+      <p id="stats-idiom-18"></p>
+      <p><em>Speak:</em> When are students in the same boat?</p>
+      <h4>19. face the music</h4>
+      <p><strong>Meaning:</strong> accept the results of your actions.</p>
+      <p><strong>Example:</strong> He had to face the music after cheating on the test.</p>
+      <button class="btn" id="rec-idiom-19">🎤 Record: face the music</button>
+      <button class="btn secondary" id="play-idiom-19" disabled>▶ Listen</button>
+      <p id="stats-idiom-19"></p>
+      <p><em>Speak:</em> Describe a time when you had to face the music.</p>
+      <h4>20. a blessing in disguise</h4>
+      <p><strong>Meaning:</strong> something that seems bad at first but becomes good later.</p>
+      <p><strong>Example:</strong> Losing that job was a blessing in disguise.</p>
+      <button class="btn" id="rec-idiom-20">🎤 Record: a blessing in disguise</button>
+      <button class="btn secondary" id="play-idiom-20" disabled>▶ Listen</button>
+      <p id="stats-idiom-20"></p>
+      <p><em>Speak:</em> Tell a story about a blessing in disguise in your life.</p>
+    </div>
+    <div class="card">
+      <h3>30-second Idioms Challenge</h3>
+      <p><span class="tag">Goal</span> Speak for 30 seconds using at least <strong>2 idioms</strong>.</p>
+      <p><strong>Question:</strong> Tell a short story about your last exam day.</p>
+      <button class="btn" id="rec-idiom-challenge">🎤 Start / Stop recording</button>
+      <button class="btn secondary" id="play-idiom-challenge" disabled>▶ Listen</button>
+      <p id="stats-idiom-challenge"></p>
+    </div>
+  </section>
+  <!-- CHUNKY WORDS -->
+  <section id="chunks" class="section hidden">
+    <div class="card">
+      <h2>Chunky Words – Speak Naturally</h2>
+      <p><span class="tag">Goal</span> Use <strong>5+ chunks</strong> in every 60-second monologue.</p>
+    </div>
+    <div class="card">
+      <h3>Opinion & Reaction Chunks</h3>
+      <h4>1. In my opinion,…</h4>
+      <p><strong>Use:</strong> to give your opinion politely.</p>
+      <p><strong>Example:</strong> In my opinion, school uniforms are a good idea.</p>
+      <button class="btn" id="rec-chunk-opinion">🎤 Record</button>
+      <button class="btn secondary" id="play-chunk-opinion" disabled>▶ Listen</button>
+      <p id="stats-chunk-opinion"></p>
+      <h4>2. As far as I know,…</h4>
+      <p><strong>Use:</strong> to say what you think is true.</p>
+      <p><strong>Example:</strong> As far as I know, the shop closes at 8.</p>
+      <button class="btn" id="rec-chunk-afaik">🎤 Record</button>
+      <button class="btn secondary" id="play-chunk-afaik" disabled>▶ Listen</button>
+      <p id="stats-chunk-afaik"></p>
+      <h4>3. To be honest,…</h4>
+      <p><strong>Use:</strong> when you want to say what you really think.</p>
+      <p><strong>Example:</strong> To be honest, I don’t like getting up early.</p>
+      <button class="btn" id="rec-chunk-honest">🎤 Record</button>
+      <button class="btn secondary" id="play-chunk-honest" disabled>▶ Listen</button>
+      <p id="stats-chunk-honest"></p>
+      <h4>4. It depends.</h4>
+      <p><strong>Use:</strong> when the answer changes with the situation.</p>
+      <p><strong>Example:</strong> Will you go to the party? – It depends.</p>
+      <button class="btn" id="rec-chunk-depends">🎤 Record</button>
+      <button class="btn secondary" id="play-chunk-depends" disabled>▶ Listen</button>
+      <p id="stats-chunk-depends"></p>
+      <h4>5. That sounds great!</h4>
+      <p><strong>Use:</strong> to react positively to an idea.</p>
+      <p><strong>Example:</strong> A picnic tomorrow? That sounds great!</p>
+      <button class="btn" id="rec-chunk-sounds">🎤 Record</button>
+      <button class="btn secondary" id="play-chunk-sounds" disabled>▶ Listen</button>
+      <p id="stats-chunk-sounds"></p>
+    </div>
+    <div class="card">
+      <h3>Request & Clarification Chunks</h3>
+      <h4>6. I’d like to…</h4>
+      <p><strong>Example:</strong> I’d like to order a coffee.</p>
+      <button class="btn" id="rec-chunk-idlike">🎤 Record</button>
+      <button class="btn secondary" id="play-chunk-idlike" disabled>▶ Listen</button>
+      <p id="stats-chunk-idlike"></p>
+      <h4>7. Can I have…?</h4>
+      <p><strong>Example:</strong> Can I have the menu, please?</p>
+      <button class="btn" id="rec-chunk-canihave">🎤 Record</button>
+      <button class="btn secondary" id="play-chunk-canihave" disabled>▶ Listen</button>
+      <p id="stats-chunk-canihave"></p>
+      <h4>8. Could you repeat that, please?</h4>
+      <p><strong>Example:</strong> Could you repeat that, please?</p>
+      <button class="btn" id="rec-chunk-repeat">🎤 Record</button>
+      <button class="btn secondary" id="play-chunk-repeat" disabled>▶ Listen</button>
+      <p id="stats-chunk-repeat"></p>
+      <h4>9. Sorry, I didn’t catch that.</h4>
+      <p><strong>Example:</strong> Sorry, I didn’t catch that. Could you say it again?</p>
+      <button class="btn" id="rec-chunk-catch">🎤 Record</button>
+      <button class="btn secondary" id="play-chunk-catch" disabled>▶ Listen</button>
+      <p id="stats-chunk-catch"></p>
+    </div>
+    <div class="card">
+      <h3>Monologue: Use 5 Chunky Words</h3>
+      <p><span class="tag">Goal</span> Speak for 60–90 seconds about your weekend plans.</p>
+      <p>Try to use:</p>
+      <ul>
+        <li>To be honest,…</li>
+        <li>In my opinion,…</li>
+        <li>It depends.</li>
+        <li>That sounds great!</li>
+        <li>I’d rather…</li>
+      </ul>
+      <button class="btn" id="rec-5chunks">🎤 Record monologue</button>
+      <button class="btn secondary" id="play-5chunks" disabled>▶ Listen</button>
+      <p id="stats-5chunks"></p>
+    </div>
+  </section>
+  <!-- SAMPLE DIALOGUES (10 topics) -->
+  <section id="dialogues" class="section hidden">
+    <div class="card">
+      <h2>Sample Dialogues – Guided Speaking (10 Topics)</h2>
+      <p><span class="tag">Goal</span> For each topic, answer all questions in one recording.</p>
+      <p>Recommended: speak for at least 40–60 seconds.</p>
+    </div>
+    <div class="card">
+      <h3>1. At the Café</h3>
+      <ol>
+        <li>What would you like to drink? (Hint: I’d like to…)</li>
+        <li>Do you prefer tea or coffee? (Hint: Actually, I usually…)</li>
+        <li>Are you ready to order? (Hint: Yes, I’d like to start with…)</li>
+        <li>How is your meal? (Hint: It’s really…, I especially like…)</li>
+      </ol>
+      <button class="btn" id="rec-dialogue-1">🎤 Record café dialogue</button>
+      <button class="btn secondary" id="play-dialogue-1" disabled>▶ Listen</button>
+      <p id="stats-dialogue-1"></p>
+    </div>
+    <div class="card">
+      <h3>2. Shopping</h3>
+      <ol>
+        <li>Can I help you? (Hint: Yes, I’m looking for…)</li>
+        <li>What size do you need? (Hint: I usually wear…, but today I’d like…)</li>
+        <li>What colour would you like? (Hint: I prefer…, because…)</li>
+        <li>Do you want to buy it? (Hint: I’m not sure. It depends on…)</li>
+      </ol>
+      <button class="btn" id="rec-dialogue-2">🎤 Record shopping dialogue</button>
+      <button class="btn secondary" id="play-dialogue-2" disabled>▶ Listen</button>
+      <p id="stats-dialogue-2"></p>
+    </div>
+    <div class="card">
+      <h3>3. My School</h3>
+      <ol>
+        <li>What school do you go to?</li>
+        <li>What is your favourite subject and why?</li>
+        <li>What do you usually do during breaks?</li>
+        <li>Would you like to change anything about your school?</li>
+      </ol>
+      <button class="btn" id="rec-dialogue-3">🎤 Record school dialogue</button>
+      <button class="btn secondary" id="play-dialogue-3" disabled>▶ Listen</button>
+      <p id="stats-dialogue-3"></p>
+    </div>
+    <div class="card">
+      <h3>4. My Family</h3>
+      <ol>
+        <li>How many people are there in your family?</li>
+        <li>Who are you closest to in your family?</li>
+        <li>Do you have any family traditions?</li>
+        <li>Would you like to have a big family in the future?</li>
+      </ol>
+      <button class="btn" id="rec-dialogue-4">🎤 Record family dialogue</button>
+      <button class="btn secondary" id="play-dialogue-4" disabled>▶ Listen</button>
+      <p id="stats-dialogue-4"></p>
+    </div>
+    <div class="card">
+      <h3>5. Hobbies</h3>
+      <ol>
+        <li>What are your hobbies?</li>
+        <li>How often do you do your hobby?</li>
+        <li>Why do you enjoy this hobby?</li>
+        <li>Would you like to try any new hobbies?</li>
+      </ol>
+      <button class="btn" id="rec-dialogue-5">🎤 Record hobbies dialogue</button>
+      <button class="btn secondary" id="play-dialogue-5" disabled>▶ Listen</button>
+      <p id="stats-dialogue-5"></p>
+    </div>
+    <div class="card">
+      <h3>6. Travelling</h3>
+      <ol>
+        <li>Do you like travelling? Why or why not?</li>
+        <li>What countries or places would you like to visit?</li>
+        <li>What was your most memorable trip?</li>
+        <li>Would you like to live in another country?</li>
+      </ol>
+      <button class="btn" id="rec-dialogue-6">🎤 Record travelling dialogue</button>
+      <button class="btn secondary" id="play-dialogue-6" disabled>▶ Listen</button>
+      <p id="stats-dialogue-6"></p>
+    </div>
+    <div class="card">
+      <h3>7. My Future Profession</h3>
+      <ol>
+        <li>What job would you like to have in the future?</li>
+        <li>Why did you choose this profession?</li>
+        <li>What skills do you need for this job?</li>
+        <li>What are you doing now to prepare for this career?</li>
+      </ol>
+      <button class="btn" id="rec-dialogue-7">🎤 Record profession dialogue</button>
+      <button class="btn secondary" id="play-dialogue-7" disabled>▶ Listen</button>
+      <p id="stats-dialogue-7"></p>
+    </div>
+    <div class="card">
+      <h3>8. Healthy Lifestyle</h3>
+      <ol>
+        <li>Do you think you have a healthy lifestyle?</li>
+        <li>What do you do to stay healthy?</li>
+        <li>Do you get enough sleep?</li>
+        <li>What advice would you give to a friend to be healthier?</li>
+      </ol>
+      <button class="btn" id="rec-dialogue-8">🎤 Record healthy lifestyle dialogue</button>
+      <button class="btn secondary" id="play-dialogue-8" disabled>▶ Listen</button>
+      <p id="stats-dialogue-8"></p>
+    </div>
+    <div class="card">
+      <h3>9. Making Friends</h3>
+      <ol>
+        <li>Is it easy for you to make friends?</li>
+        <li>What qualities are important in a good friend?</li>
+        <li>Have you ever had a conflict with a friend?</li>
+        <li>How did you solve that conflict?</li>
+      </ol>
+      <button class="btn" id="rec-dialogue-9">🎤 Record friends dialogue</button>
+      <button class="btn secondary" id="play-dialogue-9" disabled>▶ Listen</button>
+      <p id="stats-dialogue-9"></p>
+    </div>
+    <div class="card">
+      <h3>10. Environmental Problems</h3>
+      <ol>
+        <li>What environmental problems are serious in your city?</li>
+        <li>What do you personally do to protect the environment?</li>
+        <li>Do you recycle at home or at school?</li>
+        <li>What small changes can teenagers make every day?</li>
+      </ol>
+      <button class="btn" id="rec-dialogue-10">🎤 Record environment dialogue</button>
+      <button class="btn secondary" id="play-dialogue-10" disabled>▶ Listen</button>
+      <p id="stats-dialogue-10"></p>
+    </div>
+  </section>
+  <!-- DAILY SPEAKING -->
+  <section id="daily" class="section hidden">
+    <div class="card">
+      <h2>Daily Speaking Prompt</h2>
+      <p><span class="tag">Goal</span> Speak for 1–2 minutes every day.</p>
+      <h3>Today’s question</h3>
+      <p><strong>Question:</strong> Describe your perfect weekend.</p>
+      <p>Try to use these chunks:</p>
+      <ul>
+        <li>I’d like to…</li>
+        <li>In my opinion,…</li>
+        <li>That sounds great!</li>
+      </ul>
+      <button class="btn" id="rec-daily">🎤 Record your answer (1–2 minutes)</button>
+      <button class="btn secondary" id="play-daily" disabled>▶ Listen</button>
+      <p id="stats-daily"></p>
+    </div>
+  </section>
+  <!-- PROGRESS & TESTS + LEVELS -->
+  <section id="progress" class="section hidden">
+    <div class="card">
+      <h2>My Speaking Progress</h2>
+      <p><span class="tag">Goal</span> Track your speaking time and estimated level.</p>
+      <p><strong>Total speaking time:</strong> <span id="total-minutes">0</span> minutes</p>
+      <p><strong>Total speaking sessions:</strong> <span id="total-sessions">0</span></p>
+      <ul>
+        <li>Idioms sessions: <span id="count-idioms">0</span></li>
+        <li>Chunky Words sessions: <span id="count-chunks">0</span></li>
+        <li>Sample Dialogues sessions: <span id="count-dialogue">0</span></li>
+        <li>Daily Speaking sessions: <span id="count-daily">0</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Badges</h2>
+      <p><span class="tag">Goal</span> Get motivated by visible achievements.</p>
+      <div id="badges">
+        <span class="badge" id="badge-30min">30 Minutes Speaker</span>
+        <span class="badge" id="badge-120min">2 Hours Speaker</span>
+        <span class="badge" id="badge-10sessions">10 Speaking Sessions</span>
+        <span class="badge" id="badge-idiom-master">Idiom Master (10 idioms sessions)</span>
+        <span class="badge" id="badge-chunk-speaker">Chunky Speaker (10 chunks sessions)</span>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Speaking Level (A1–B1, total progress)</h2>
+      <p><span class="tag">Goal</span> See your approximate level based on total speaking time and dialogues.</p>
+      <button class="btn" id="calc-level">Calculate my level</button>
+      <div id="level-box" class="level-box"></div>
+      <p><strong>Rules (simplified):</strong></p>
+      <ul>
+        <li>A1 – less than 60 minutes total and fewer than 10 dialogues.</li>
+        <li>A2 – 60–180 minutes total or 10–29 dialogues.</li>
+        <li>B1 – 180+ minutes and 30+ dialogues.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Final Speaking Test (Monologue)</h2>
+      <p><span class="tag">Goal</span> Speak continuously for 2–3 minutes and get a separate level for this test.</p>
+      <ol>
+        <li>Introduce yourself (name, age, where you live).</li>
+        <li>Talk about your studies or work (what you do, what you like/dislike).</li>
+        <li>Describe your typical weekday and weekend.</li>
+        <li>Explain your future plans (study, job, travel).</li>
+      </ol>
+      <p>Try to use:</p>
+      <ul>
+        <li>Opinion chunks (In my opinion, To be honest,…)</li>
+        <li>At least 2 idioms from the Idioms section.</li>
+      </ul>
+      <p><strong>Timer:</strong> <span id="final-timer">0</span> seconds</p>
+      <button class="btn" id="rec-final-test">🎤 Start / Stop final test</button>
+      <button class="btn secondary" id="play-final-test" disabled>▶ Listen</button>
+      <p id="stats-final-test"></p>
+      <h3>Final Test Level (A1–B1)</h3>
+      <button class="btn" id="calc-final-level">Calculate final test level</button>
+      <div id="final-level-box" class="level-box"></div>
+      <p><strong>Criteria (approximate, based on length only):</strong></p>
+      <ul>
+        <li>A1 – speaking less than 60 seconds.</li>
+        <li>A2 – speaking 60–149 seconds.</li>
+        <li>B1 – speaking 150+ seconds (2.5 minutes or more).</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>What do A1, A2, B1 mean?</h2>
+      <p><span class="tag">For students</span> Simple explanation of speaking levels.</p>
+      <table class="levels-table">
+        <tr>
+          <th>Level</th>
+          <th>How to understand it</th>
+          <th>Typical student</th>
+        </tr>
+        <tr>
+          <td>A1</td>
+          <td>I can say a few simple sentences and often stop.</td>
+          <td>Just started speaking, very short answers.</td>
+        </tr>
+        <tr>
+          <td>A2</td>
+          <td>I can speak in simple phrases for 1–2 minutes about familiar topics.</td>
+          <td>Can explain habits, plans, opinions.</td>
+        </tr>
+        <tr>
+          <td>B1</td>
+          <td>I can speak 2–3 minutes and longer, connect ideas, use chunks and idioms.</td>
+          <td>Confident, can tell stories and give opinions with examples.</td>
+        </tr>
+      </table>
+      <p><strong>Mini level for each answer (what you see under every task):</strong></p>
+      <ul>
+        <li><strong>Mini level A1</strong> – very short answer (less than 20 seconds), 1–2 simple sentences.</li>
+        <li><strong>Mini level A2</strong> – short monologue (20–44 seconds), a few connected sentences.</li>
+        <li><strong>Mini level B1</strong> – 45+ seconds, a small story or opinion with details.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Mini Tests</h2>
+      <p><span class="tag">Goal</span> Check your idioms and chunky words.</p>
+      <h3>Idioms Test 1 (5 questions)</h3>
+      <ol id="idiom-test">
+        <li>
+          “I only eat fast food once in a ______.”
+          <br>
+          <label><input type="radio" name="q1" value="a"> rainy day</label>
+          <label><input type="radio" name="q1" value="b"> blue moon</label>
+          <label><input type="radio" name="q1" value="c"> long road</label>
+        </li>
+        <li>
+          “A couch potato” is…
+          <br>
+          <label><input type="radio" name="q2" value="a"> a very active person</label>
+          <label><input type="radio" name="q2" value="b"> a person who watches a lot of TV</label>
+          <label><input type="radio" name="q2" value="c"> a person who loves potatoes</label>
+        </li>
+        <li>
+          “Break the ice” means…
+          <br>
+          <label><input type="radio" name="q3" value="a"> make people relaxed and start a conversation</label>
+          <label><input type="radio" name="q3" value="b"> go outside when it is cold</label>
+          <label><input type="radio" name="q3" value="c"> break your phone</label>
+        </li>
+        <li>
+          “Cost an arm and a leg” means…
+          <br>
+          <label><input type="radio" name="q4" value="a"> be very cheap</label>
+          <label><input type="radio" name="q4" value="b"> be very expensive</label>
+          <label><input type="radio" name="q4" value="c"> be free</label>
+        </li>
+        <li>
+          “Under the weather” means…
+          <br>
+          <label><input type="radio" name="q5" value="a"> feel ill</label>
+          <label><input type="radio" name="q5" value="b"> feel very happy</label>
+          <label><input type="radio" name="q5" value="c"> be outside</label>
+        </li>
+      </ol>
+      <button class="btn" id="check-idiom-test">Check Idioms Test</button>
+      <p id="idiom-test-result"></p>
+      <h3>Chunky Words Test 1 (3 questions)</h3>
+      <ol id="chunk-test">
+        <li>
+          Choose the best chunk to start your opinion:
+          <br>
+          <label><input type="radio" name="cq1" value="a"> To be honest,…</label>
+          <label><input type="radio" name="cq1" value="b"> How much is it?</label>
+          <label><input type="radio" name="cq1" value="c"> Can I have…?</label>
+        </li>
+        <li>
+          Choose the chunk to ask for something:
+          <br>
+          <label><input type="radio" name="cq2" value="a"> In my opinion,…</label>
+          <label><input type="radio" name="cq2" value="b"> Can I have…?</label>
+          <label><input type="radio" name="cq2" value="c"> It depends.</label>
+        </li>
+        <li>
+          “It depends” is used when…
+          <br>
+          <label><input type="radio" name="cq3" value="a"> you strongly agree</label>
+          <label><input type="radio" name="cq3" value="b"> you are not sure, it changes with the situation</label>
+          <label><input type="radio" name="cq3" value="c"> you say your name</label>
+        </li>
+      </ol>
+      <button class="btn" id="check-chunk-test">Check Chunk Test</button>
+      <p id="chunk-test-result"></p>
+    </div>
+  </section>
+</div>
+<script>
+  // ---------- NAVIGATION ----------
+  const navLinks = document.querySelectorAll('nav a[data-section]');
+  const sections = document.querySelectorAll('.section');
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      const target = link.getAttribute('data-section');
+      sections.forEach(sec => {
+        sec.classList.toggle('hidden', sec.id !== target);
+      });
+      navLinks.forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+      if (target === 'progress') {
+        loadProgress();
+      }
+    });
+  });
+  // ---------- PROGRESS STORAGE ----------
+  function getDefaultProgress() {
+    return {
+      totalSecondsSpoken: 0,
+      sessions: 0,
+      byType: {
+        idioms: 0,
+        chunks: 0,
+        dialogue: 0,
+        daily: 0
+      },
+      finalTestSeconds: 0
+    };
+  }
+  function updateProgress(type, approxSeconds) {
+    const key = 'alkProgress';
+    const raw = localStorage.getItem(key);
+    const data = raw ? JSON.parse(raw) : getDefaultProgress();
+    data.totalSecondsSpoken += approxSeconds;
+    data.sessions += 1;
+    if (data.byType[type] !== undefined) {
+      data.byType[type] += 1;
+    }
+    localStorage.setItem(key, JSON.stringify(data));
+  }
+  function updateFinalTest(seconds) {
+    const key = 'alkProgress';
+    const raw = localStorage.getItem(key);
+    const data = raw ? JSON.parse(raw) : getDefaultProgress();
+    data.finalTestSeconds = seconds;
+    localStorage.setItem(key, JSON.stringify(data));
+  }
+  function loadProgress() {
+    const raw = localStorage.getItem('alkProgress');
+    if (!raw) return;
+    const data = JSON.parse(raw);
+    const minutes = Math.round(data.totalSecondsSpoken / 60);
+    document.getElementById('total-minutes').textContent = minutes;
+    document.getElementById('total-sessions').textContent = data.sessions;
+    document.getElementById('count-idioms').textContent = data.byType.idioms;
+    document.getElementById('count-chunks').textContent = data.byType.chunks;
+    document.getElementById('count-dialogue').textContent = data.byType.dialogue;
+    document.getElementById('count-daily').textContent = data.byType.daily;
+    function earn(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.add('earned');
+    }
+    if (minutes >= 30) earn('badge-30min');
+    if (minutes >= 120) earn('badge-120min');
+    if (data.sessions >= 10) earn('badge-10sessions');
+    if (data.byType.idioms >= 10) earn('badge-idiom-master');
+    if (data.byType.chunks >= 10) earn('badge-chunk-speaker');
+  }
+  // ---------- SPEAKING LEVEL (TOTAL A1–B1) ----------
+  document.getElementById('calc-level').onclick = () => {
+    const raw = localStorage.getItem('alkProgress');
+    const box = document.getElementById('level-box');
+    box.className = 'level-box';
+    if (!raw) {
+      box.textContent = 'No data yet. Do some speaking tasks first.';
+      return;
+    }
+    const data = JSON.parse(raw);
+    const minutes = data.totalSecondsSpoken / 60;
+    const dialogues = data.byType.dialogue;
+    let level = 'A1';
+    let desc = 'You can answer simple questions with short sentences. Keep practising idioms and chunks.';
+    let cls = 'level-a1';
+    if ((minutes >= 60 && minutes < 180) || (dialogues >= 10 && dialogues < 30)) {
+      level = 'A2';
+      desc = 'You can speak in simple connected phrases about familiar topics. Try to add more details and new chunks.';
+      cls = 'level-a2';
+    }
+    if (minutes >= 180 && dialogues >= 30) {
+      level = 'B1';
+      desc = 'You can speak for longer about your life, plans and opinions, using idioms and chunks. Work on accuracy and range.';
+      cls = 'level-b1';
+    }
+    box.classList.add(cls);
+    box.innerHTML = '<strong>Estimated level: ' + level + '</strong><br>' + desc;
+  };
+  // ---------- FINAL TEST LEVEL ----------
+  document.getElementById('calc-final-level').onclick = () => {
+    const raw = localStorage.getItem('alkProgress');
+    const box = document.getElementById('final-level-box');
+    box.className = 'level-box';
+    if (!raw) {
+      box.textContent = 'No data yet. Please record the final speaking test first.';
+      return;
+    }
+    const data = JSON.parse(raw);
+    const sec = data.finalTestSeconds || 0;
+    if (sec === 0) {
+      box.textContent = 'No final test recording found. Please record it first.';
+      return;
+    }
+    let level = 'A1';
+    let desc = 'Final test: short monologue. Try to speak longer and add more details.';
+    let cls = 'level-a1';
+    if (sec >= 60 && sec < 150) {
+      level = 'A2';
+      desc = 'Final test: you can speak for about 1–2 minutes with basic details. Add more idioms and complex sentences.';
+      cls = 'level-a2';
+    }
+    if (sec >= 150) {
+      level = 'B1';
+      desc = 'Final test: strong monologue (2.5+ minutes). You can keep talking and organise your ideas.';
+      cls = 'level-b1';
+    }
+    box.classList.add(cls);
+    box.innerHTML = '<strong>Final test level: ' + level + '</strong><br>' + desc +
+      '<br><small>Approximate speaking time: ' + sec.toFixed(1) + ' seconds.</small>';
+  };
+  // ---------- MINI LEVEL FOR EACH ANSWER ----------
+  function getMiniLevelText(seconds) {
+    if (seconds < 20) {
+      return 'Mini level for this answer: A1 (very short answer).';
+    } else if (seconds < 45) {
+      return 'Mini level for this answer: A2 (simple short monologue).';
+    } else {
+      return 'Mini level for this answer: B1 (longer answer).';
+    }
+  }
+  // ---------- AUDIO RECORDER ----------
+  async function setupRecorder(recBtnId, playBtnId, resultId, typeKey, isFinalTest = false, timerSpanId = null) {
+    const recBtn = document.getElementById(recBtnId);
+    const playBtn = document.getElementById(playBtnId);
+    const result = document.getElementById(resultId);
+    const timerSpan = timerSpanId ? document.getElementById(timerSpanId) : null;
+    if (!recBtn) return;
+    let mediaRecorder;
+    let chunks = [];
+    let isRecording = false;
+    let timerInterval = null;
+    let startTime = 0;
+    async function init() {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      mediaRecorder = new MediaRecorder(stream);
+      mediaRecorder.ondataavailable = e => chunks.push(e.data);
+      mediaRecorder.onstop = () => {
+        const blob = new Blob(chunks, { type: 'audio/webm;codecs=opus' });
+        chunks = [];
+        const audioURL = URL.createObjectURL(blob);
+        if (playBtn) {
+          playBtn.onclick = () => {
+            const audio = new Audio(audioURL);
+            audio.play();
+          };
+          playBtn.disabled = false;
+        }
+        const seconds = blob.size / 16000; // rough estimate
+        if (result) {
+          const mini = getMiniLevelText(seconds);
+          result.textContent = 'Approx. length: ' + seconds.toFixed(1) + ' seconds. ' + mini;
+        }
+        if (isFinalTest) {
+          updateFinalTest(seconds);
+          updateProgress('dialogue', seconds);
+        } else if (typeKey) {
+          updateProgress(typeKey, seconds);
+        }
+      };
+    }
+    await init();
+    recBtn.onclick = () => {
+      if (!isRecording) {
+        mediaRecorder.start();
+        recBtn.textContent = '⏹ Stop recording';
+        isRecording = true;
+        if (timerSpan) {
+          startTime = Date.now();
+          timerSpan.textContent = '0';
+          timerInterval = setInterval(() => {
+            const diff = Math.floor((Date.now() - startTime) / 1000);
+            timerSpan.textContent = diff.toString();
+          }, 500);
+        }
+      } else {
+        mediaRecorder.stop();
+        recBtn.textContent = '🎤 Record again';
+        isRecording = false;
+        if (timerInterval) {
+          clearInterval(timerInterval);
+          timerInterval = null;
+        }
+      }
+    };
+  }
+  // ---------- SETUP ALL RECORDERS ----------
+  // Idioms 1–20
+  for (let i = 1; i <= 20; i++) {
+    setupRecorder('rec-idiom-' + i, 'play-idiom-' + i, 'stats-idiom-' + i, 'idioms');
+  }
+  setupRecorder('rec-idiom-challenge', 'play-idiom-challenge', 'stats-idiom-challenge', 'idioms');
+  // Chunky words
+  setupRecorder('rec-chunk-opinion', 'play-chunk-opinion', 'stats-chunk-opinion', 'chunks');
+  setupRecorder('rec-chunk-afaik', 'play-chunk-afaik', 'stats-chunk-afaik', 'chunks');
+  setupRecorder('rec-chunk-honest', 'play-chunk-honest', 'stats-chunk-honest', 'chunks');
+  setupRecorder('rec-chunk-depends', 'play-chunk-depends', 'stats-chunk-depends', 'chunks');
+  setupRecorder('rec-chunk-sounds', 'play-chunk-sounds', 'stats-chunk-sounds', 'chunks');
+  setupRecorder('rec-chunk-idlike', 'play-chunk-idlike', 'stats-chunk-idlike', 'chunks');
+  setupRecorder('rec-chunk-canihave', 'play-chunk-canihave', 'stats-chunk-canihave', 'chunks');
+  setupRecorder('rec-chunk-repeat', 'play-chunk-repeat', 'stats-chunk-repeat', 'chunks');
+  setupRecorder('rec-chunk-catch', 'play-chunk-catch', 'stats-chunk-catch', 'chunks');
+  setupRecorder('rec-5chunks', 'play-5chunks', 'stats-5chunks', 'chunks');
+  // Dialogues 1–10
+  for (let d = 1; d <= 10; d++) {
+    setupRecorder('rec-dialogue-' + d, 'play-dialogue-' + d, 'stats-dialogue-' + d, 'dialogue');
+  }
+  // Daily speaking
+  setupRecorder('rec-daily', 'play-daily', 'stats-daily', 'daily');
+  // Final speaking test (with timer)
+  setupRecorder('rec-final-test', 'play-final-test', 'stats-final-test', 'dialogue', true, 'final-timer');
+  // ---------- TESTS ----------
+  function setupIdiomTest() {
+    const correct = { q1: 'b', q2: 'b', q3: 'a', q4: 'b', q5: 'a' };
+    const btn = document.getElementById('check-idiom-test');
+    if (!btn) return;
+    btn.onclick = () => {
+      let score = 0;
+      let total = 5;
+      for (let key in correct) {
+        const chosen = document.querySelector('input[name="' + key + '"]:checked');
+        if (chosen && chosen.value === correct[key]) score++;
+      }
+      document.getElementById('idiom-test-result').textContent =
+        'Your score: ' + score + ' / ' + total;
+    };
+  }
+  function setupChunkTest() {
+    const correct = { cq1: 'a', cq2: 'b', cq3: 'b' };
+    const btn = document.getElementById('check-chunk-test');
+    if (!btn) return;
+    btn.onclick = () => {
+      let score = 0;
+      let total = 3;
+      for (let key in correct) {
+        const chosen = document.querySelector('input[name="' + key + '"]:checked');
+        if (chosen && chosen.value === correct[key]) score++;
+      }
+      document.getElementById('chunk-test-result').textContent =
+        'Your score: ' + score + ' / ' + total;
+    };
+  }
+  setupIdiomTest();
+  setupChunkTest();
+</script>
+</body>
+</html>
